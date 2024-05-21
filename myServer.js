@@ -6,6 +6,11 @@ const fortuneCookies =  require('./powerUp');
 
 const server = http.createServer((req, res) => {
     console.log(req.method, req.url);
+    if (req.url === "/favicon.ico") {
+        res.writeHead(404, {"Content-Type": "text/html" });
+        res.end("<h1>Not Found</h1>");
+        return;
+    }
     res.writeHead(200, {"Content-Type": "text/html" });
     res.end(`
     <!doctype html>
@@ -17,7 +22,7 @@ const server = http.createServer((req, res) => {
     </head>
     <body>
         <div>
-            <h1>${fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)]}</h1>
+            <h1 id="fortune">${fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)]}</h1>
         </div>
     </body>
     </html>
