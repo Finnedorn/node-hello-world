@@ -2,12 +2,7 @@ require("dotenv").config();
 const http = require("http");
 const host = process.env.HOST;
 const port = process.env.PORT;
-const fortuneCookies = [
-    "Il successo è la somma di piccoli sforzi",
-    "Credi in te stesso",
-    "Non arrenderti mai",
-    "Ogni giorno è un'opportunità",
-];
+const fortuneCookies =  require('./powerUp');
 
 const server = http.createServer((req, res) => {
     console.log(req.method, req.url);
@@ -27,7 +22,6 @@ const server = http.createServer((req, res) => {
     </body>
     </html>
     `);
-    
 });
 
 server.listen(port, host , () => {
