@@ -12,6 +12,10 @@ const server = http.createServer((req, res) => {
         res.end();
         return;
     }
+
+    function getRandomInt(i) { return Math.floor(Math.random() * i.length)}
+    const rngCookie = getRandomInt(fortuneCookies);
+    
     res.writeHead(200, {"Content-Type": "text/html" });
     res.end(`
     <!doctype html>
@@ -23,7 +27,7 @@ const server = http.createServer((req, res) => {
     </head>
     <body>
         <div>
-            <h1 id="fortune">${fortuneCookies[Math.floor(Math.random() * fortuneCookies.length)]}</h1>
+            <h1 id="fortune">${fortuneCookies[rngCookie]}</h1>
         </div>
         <button id="btn">Click me to get your Fortune Cookie</button>
         <script>
